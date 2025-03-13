@@ -5,6 +5,15 @@ export const authRoutes: Routes = [
   {
     path: '',
     component: AuthComponent,
-    children: [],
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'login' },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./components/login/login.component').then(
+            (m) => m.LoginComponent
+          ),
+      },
+    ],
   },
 ];
