@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  font-family: "Noto Sans", serif;
+  font-size: 0.975rem;
+}
+
+/* Font sizes */
+.text-xs {
+  font-size: 0.75rem; /* 12px */
+}
+
+.text-sm {
+  font-size: 0.875rem; /* 14px */
+}
+
+.text-base {
+  font-size: 1rem; /* 16px */
+}
+
+.text-lg {
+  font-size: 1.125rem; /* 18px */
+}
+
+.text-xl {
+  font-size: 1.3125rem; /* 21px */
+}
+
+.text-2xl {
+  font-size: 1.5rem; /* 24px */
+}
+
+.text-3xl {
+  font-size: 2rem; /* 32px */
+}
+
+.text-4xl {
+  font-size: 2.5rem; /* 40px */
+}
+
+/* Font weights */
+.text-thin {
+  font-weight: 100; /* Thin font weight */
+}
+
+.text-extralight {
+  font-weight: 200; /* ExtraLight font weight */
+}
+
+.text-light {
+  font-weight: 300; /* Light font weight */
+}
+
+.text-normal {
+  font-weight: 400; /* Normal font weight */
+}
+
+.text-medium {
+  font-weight: 500; /* Medium font weight */
+}
+
+.text-semibold {
+  font-weight: 600; /* Semi-bold font weight */
+}
+
+.text-bold {
+  font-weight: 700; /* Bold font weight */
+}
+
+.text-bolder {
+  font-weight: 900; /* Extra bold font weight */
+}
