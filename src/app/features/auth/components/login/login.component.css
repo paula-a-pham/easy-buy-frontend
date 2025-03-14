@@ -1,0 +1,40 @@
+.login-container {
+  min-height: 100vh;
+  max-height: 100vh;
+  height: 100vh;
+  background-image: url("../../../../../assets/images/svgs/auth-background.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+}
+
+.row {
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.login-form {
+  background-color: var(--slate-50);
+  padding: 2.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.reset-password {
+  color: var(--slate-600);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.reset-password:hover {
+  color: var(--primary-500);
+}
