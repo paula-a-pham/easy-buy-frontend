@@ -1,12 +1,91 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthService } from '../../../../core/services/auth.service';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { NgClass } from '@angular/common';
+import { IUser, IUserCredentials } from '../../../../shared/models/iuser';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
+  private destroy$: Subject<void> = new Subject<void>();
+  loginForm!: FormGroup;
 
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit(): void {
+    this.initializeLoginForm();
+  }
+
+  initializeLoginForm(): void {
+    this.loginForm = this.formBuilder.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      rememberMe: [''],
+    });
+  }
+
+  get username() {
+    return this.loginForm.get('username');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
+  get rememberMe() {
+    return this.loginForm.get('rememberMe');
+  }
+
+  disableAllInputs(): void {
+    this.username?.disable();
+    this.password?.disable();
+    this.rememberMe?.disable();
+  }
+
+  enableAllInputs(): void {
+    this.username?.enable();
+    this.password?.enable();
+    this.rememberMe?.enable();
+  }
+
+  onLoginFormSubmit(): void {
+    this.disableAllInputs();
+
+    const { username, password } = this.loginForm.value;
+    const userCredentials: IUserCredentials = { username, password };
+
+    const observer = {
+      next: (user: IUser) => {
+        localStorage.setItem('user', JSON.stringify(user));
+      },
+      error: (error: any) => {
+        this.loginForm.reset();
+        this.enableAllInputs();
+        console.error('Login error: ', error);
+      },
+    };
+    this.authService
+      .login(userCredentials)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(observer);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }
