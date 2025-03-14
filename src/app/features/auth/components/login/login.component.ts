@@ -9,11 +9,13 @@ import {
 import { NgClass } from '@angular/common';
 import { IUser, IUserCredentials } from '../../../../shared/models/iuser';
 import { Subject, takeUntil } from 'rxjs';
+import { SpinnerComponent } from '../../../../shared/components/spinner/spinner.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, NgClass, SpinnerComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService,
     private authService: AuthService
   ) {}
 
@@ -63,6 +66,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onLoginFormSubmit(): void {
+    this.spinner.show();
+
     this.disableAllInputs();
 
     const { username, password } = this.loginForm.value;
@@ -71,10 +76,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     const observer = {
       next: (user: IUser) => {
         localStorage.setItem('user', JSON.stringify(user));
+        this.spinner.hide();
       },
       error: (error: any) => {
         this.loginForm.reset();
         this.enableAllInputs();
+        this.spinner.hide();
         console.error('Login error: ', error);
       },
     };
