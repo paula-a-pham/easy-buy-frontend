@@ -7,7 +7,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { NgClass } from '@angular/common';
-import { IUser, IUserCredentials } from '../../../../shared/models/iuser';
+import {
+  IBaseUser,
+  IUser,
+  IUserCredentials,
+} from '../../../../shared/models/iuser';
 import { Subject, takeUntil } from 'rxjs';
 import { SpinnerComponent } from '../../../../shared/components/spinner/spinner.component';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -67,6 +71,24 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.rememberMe?.enable();
   }
 
+  getCurrentUser(): void {
+    const observer = {
+      next: (user: IUser) => {
+        this.spinner.hide();
+        subscribtion.unsubscribe();
+        localStorage.setItem('role', user.role);
+        if (user.role === 'user') {
+          this.router.navigate(['/']);
+        }
+      },
+      error: (error: any) => {
+        this.spinner.hide();
+        console.error('Login error: ', error);
+      },
+    };
+    const subscribtion = this.authService.getCurrentUser().subscribe(observer);
+  }
+
   onLoginFormSubmit(): void {
     this.spinner.show();
 
@@ -76,10 +98,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     const userCredentials: IUserCredentials = { username, password };
 
     const observer = {
-      next: (user: IUser) => {
+      next: (user: IBaseUser) => {
         localStorage.setItem('user', JSON.stringify(user));
-        this.router.navigate(['/']);
-        this.spinner.hide();
+        this.getCurrentUser();
       },
       error: (error: any) => {
         this.loginForm.reset();
