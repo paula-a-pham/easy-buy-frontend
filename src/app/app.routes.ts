@@ -1,7 +1,13 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'auth' },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./layouts/user-layout/user-layout.routes').then(
+        (m) => m.userLayoutRoutes
+      ),
+  },
   {
     path: 'auth',
     loadChildren: () =>
