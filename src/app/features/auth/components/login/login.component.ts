@@ -11,6 +11,7 @@ import { IUser, IUserCredentials } from '../../../../shared/models/iuser';
 import { Subject, takeUntil } from 'rxjs';
 import { SpinnerComponent } from '../../../../shared/components/spinner/spinner.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private spinner: NgxSpinnerService,
     private authService: AuthService
   ) {}
@@ -76,6 +78,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     const observer = {
       next: (user: IUser) => {
         localStorage.setItem('user', JSON.stringify(user));
+        this.router.navigate(['/']);
         this.spinner.hide();
       },
       error: (error: any) => {
