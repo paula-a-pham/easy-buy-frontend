@@ -1,0 +1,64 @@
+.ad-container {
+  background: var(--primary-500);
+  color: var(--slate-50);
+  width: 100%;
+  padding-block: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ad-container * {
+  color: var(--slate-50);
+}
+
+.close-ad {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+.close-ad svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+nav {
+  background-color: transparent;
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.login-btn {
+  padding-inline: 1rem !important;
+}
+
+.login-collapsed {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .ad-container {
+    justify-content: flex-start;
+    padding-left: 0.5rem;
+  }
+
+  .login-btn {
+    display: none;
+  }
+
+  .login-collapsed {
+    display: block;
+  }
+}
