@@ -8,7 +8,6 @@ export const routes: Routes = [
       import('./layouts/user-layout/user-layout.routes').then(
         (m) => m.userLayoutRoutes
       ),
-    canActivate: [authGuard],
   },
   {
     path: 'auth',
