@@ -9,21 +9,25 @@
 
 .x-btn:hover {
   background-color: var(--primary-600);
+  color: var(--slate-50);
   border: 1px solid var(--primary-600);
 }
 
 .x-btn:focus-visible {
   background-color: var(--primary-600);
+  color: var(--slate-50);
   border: 1px solid var(--primary-600);
 }
 
 .x-btn:active {
   background-color: var(--primary-600);
+  color: var(--slate-50);
   border: 1px solid var(--primary-600);
 }
 
 .x-btn:disabled {
   background-color: var(--primary-400);
+  color: var(--slate-50);
   border: 1px solid var(--primary-400);
   cursor: not-allowed;
 }
