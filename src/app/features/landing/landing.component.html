@@ -1,0 +1,13 @@
+<div class="landing-container">
+  <div
+    class="d-flex flex-column align-items-center justify-content-center gap-5"
+  >
+    @for (category of categoriesList; track $index) {
+    <div class="w-100">
+      <app-top-category-products
+        [categoryName]="category"
+      ></app-top-category-products>
+    </div>
+    }
+  </div>
+</div>
