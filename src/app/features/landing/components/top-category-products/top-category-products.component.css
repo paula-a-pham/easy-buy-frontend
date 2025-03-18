@@ -1,0 +1,37 @@
+.section-header {
+  border-bottom: 0.125rem solid var(--slate-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-title,
+.view-all {
+  color: var(--slate-700);
+  padding-bottom: 0.75rem;
+}
+
+.section-title {
+  color: var(--slate-700);
+  border-bottom: 0.25rem solid var(--primary-500);
+}
+
+.section-title span {
+  color: var(--primary-500);
+}
+
+.view-all {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.view-all svg {
+  color: var(--primary-500);
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.section-content {
+  margin-top: 1rem;
+}

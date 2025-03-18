@@ -1,0 +1,35 @@
+<section class="section-header">
+  <div class="text-lg text-semibold section-title">
+    Top products in
+    <span class="text-lg text-semibold">{{ categoryName | titlecase }}</span>
+  </div>
+  <div class="text-base view-all">
+    View All
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-chevron-right"
+    >
+      <path d="m9 18 6-6-6-6" />
+    </svg>
+  </div>
+</section>
+
+@if (products && products.length > 0) {
+<section class="section-content">
+  <div class="row g-3">
+    @for (product of products; track product.id) {
+    <div class="col-xxl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+      <app-product [product]="product"></app-product>
+    </div>
+    }
+  </div>
+</section>
+}
