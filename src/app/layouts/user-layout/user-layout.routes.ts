@@ -5,6 +5,14 @@ export const userLayoutRoutes: Routes = [
   {
     path: '',
     component: UserLayoutComponent,
-    children: [],
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../features/landing/landing.routes').then(
+            (m) => m.landingRoutes
+          ),
+      },
+    ],
   },
 ];
