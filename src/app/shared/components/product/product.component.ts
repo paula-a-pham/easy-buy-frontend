@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { IProduct } from '../../models/iproduct';
-import { DecimalPipe, NgStyle } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
+import { BackgroundImageLazyLoadDirective } from '../../directives/background-image-lazy-load.directive';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [DecimalPipe, NgStyle],
+  imports: [DecimalPipe, BackgroundImageLazyLoadDirective],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
 })

@@ -1,7 +1,7 @@
 <div class="product-card">
   <section
+    [appBackgroundImageLazyLoad]="product.images[0]"
     class="product-image"
-    [ngStyle]="{ 'background-image': 'url(' + product.images[0] + ')' }"
   ></section>
 
   <section class="product-details">
