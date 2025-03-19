@@ -2,12 +2,31 @@
   <div
     class="d-flex flex-column align-items-center justify-content-center gap-5"
   >
-    @for (category of categoriesList; track $index) {
     <div class="w-100">
       <app-top-category-products
-        [categoryName]="category"
+        categoryName="smartphones"
+        [products]="smartphones.slice(0, 10)"
       ></app-top-category-products>
     </div>
-    }
+    <div class="w-100">
+      <app-top-category-products
+        categoryName="motorcycle"
+        [products]="motorcycle.slice(0, 10)"
+      ></app-top-category-products>
+    </div>
+    <div class="w-100">
+      <app-top-category-products
+        categoryName="groceries"
+        [products]="groceries.slice(0, 10)"
+      ></app-top-category-products>
+    </div>
+    <div class="w-100">
+      <app-top-category-products
+        categoryName="sunglasses"
+        [products]="sunglasses.slice(0, 10)"
+      ></app-top-category-products>
+    </div>
   </div>
 </div>
+
+<app-spinner></app-spinner>
